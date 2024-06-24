@@ -1,5 +1,7 @@
 const UserModel = require("../database/models/users.models.js");
 const ValidateRegister = require("../validation/Register");
+const ValidateLogin = require("../validation/Login");
+const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
 const Register = async (req, res) => {
@@ -26,7 +28,48 @@ const Register = async (req, res) => {
     }
   };
 
+  const Login = async(req, res)=>{
+   const {errors, isValid} = ValidateLogin(req.body)
+   try {
+      if(!isValid){
+       res.status(404).json(errors)
+      }else{
+        UserModel.findOne({email: req.body.email})
+      .then(user=>{
+        if(!user){
+          errors.email = "not found user"
+          res.status(404).json(errors)
+        }else{
+          bcrypt.compare(req.body.password, user.password)
+          .then(isMatch=>{
+            if(!isMatch){
+              errors.password = "incorrect password"
+              res.status(404).json(errors)
+            }else{
+               
+              var token = jwt.sign({ 
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role
+               }, 'shhhhh',  { expiresIn: '1h' });
+               res.status(200).json({
+                 message: "success",
+                 token: "Bearer "+token
+               })
+            }
+          })
+        }
+      })
+      }
+   } catch (error) {
+    res.status(404).json(error.message);
+   }
+  }
+
+
 
 module.exports = {
-    Register
+    Register,
+    Login
 }
