@@ -4,7 +4,7 @@ const Profile = () => {
 
     return (
         <div>
-            <div class="bg-light" style="height: 100vh">
+            <div class="bg-light" style={{height: "100vh"}}>
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="#">MERN Profile</a>
@@ -34,7 +34,7 @@ const Profile = () => {
                             <div class="d-flex">
                                 <i class="fa-solid fa-user fs-1 mx-2"></i> <h2>Profile</h2>
                             </div>
-                            <div class="p-6 shadow-lg p-3 mb-5 bg-body rounded" style="background-color: white">
+                            <div class="p-6 shadow-lg p-3 mb-5 bg-body rounded" style={{backgroundColor: "white"}}>
                                 <form>
                                     <div class=" mb-3">
                                         <label class="form-label">Telephone</label>
