@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"
+import { Link ,useNavigate } from "react-router-dom"
 
 const Register = (props) => {
 
@@ -9,6 +9,7 @@ const Register = (props) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirm, setConfirm] = useState("")
+    const navigate = useNavigate();
 
     return (
 
@@ -60,7 +61,7 @@ const Register = (props) => {
                                     email: email,
                                     password: password,
                                     confirm: confirm
-                                })
+                                },navigate('/login'))
                             }}>Save <i className="fa-solid fa-floppy-disk"></i></button>
                             <Link to="/login">I have account</Link>
 

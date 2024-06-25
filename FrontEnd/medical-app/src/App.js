@@ -46,7 +46,7 @@ function App() {
 
   const user = {
     isConnected: false,
-    role: "USER"
+    role: "ADMIN"
   }
 
   return (

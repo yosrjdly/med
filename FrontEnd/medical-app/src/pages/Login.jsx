@@ -1,12 +1,12 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link,useNavigate } from "react-router-dom"
 
 const Login = (props) => {
     { console.log(props) }
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
+    const navigate = useNavigate();
     return (
 
         <div className="container p-4 mt-4">
@@ -40,7 +40,7 @@ const Login = (props) => {
                                 props.add({
                                     email: email,
                                     password: password
-                                })
+                                },navigate('/'))
                             }}>Save <i className="fa-solid fa-floppy-disk"></i></button>
                             <Link to="/register">I don't have account</Link>
 
