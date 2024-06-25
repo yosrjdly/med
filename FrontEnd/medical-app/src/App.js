@@ -32,6 +32,14 @@ function App() {
     })
   }
 
+  const postLogin = (body) => {
+    axios.post('http://127.0.0.1:5000/api/login', body).then((response) => {
+      console.log(response.data)
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
+
   useEffect(() => {
 
   },[])
@@ -48,7 +56,7 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<PrivateRouter user={user}><Profile /></PrivateRouter>}></Route>
-            <Route path="/login" element={<ForceRedirect user={user}><Login /></ForceRedirect>}></Route>
+            <Route path="/login" element={<ForceRedirect user={user}><Login  add={postLogin}/></ForceRedirect>}></Route>
             <Route path="/register" element={<ForceRedirect user={user}><Register add={postRegister} /></ForceRedirect>}></Route>
             <Route path="/admin" element={<AdminRouter user={user}><Admin /></AdminRouter>}></Route>
             <Route path="*" element={<NotFound />} />
