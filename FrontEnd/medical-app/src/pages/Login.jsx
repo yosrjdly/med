@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-const Login = () => {
+const Login = (props) => {
 
     return (
       
@@ -29,6 +29,7 @@ const Login = () => {
                                         </div>
 
                                     </div>
+                                  
                                     <div className="d-flex justify-content-between">
                                         <button type="submit" className="btn btn-outline-primary">Save <i className="fa-solid fa-floppy-disk"></i></button>
                                         <Link to="/register">I don't have account</Link>
