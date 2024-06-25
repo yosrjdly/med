@@ -67,9 +67,12 @@ const Register = async (req, res) => {
    }
   }
 
-
+  const Test = (req, res)=>{
+    res.send("welcome user")
+  }
 
 module.exports = {
     Register,
-    Login
+    Login,
+    Test
 }
