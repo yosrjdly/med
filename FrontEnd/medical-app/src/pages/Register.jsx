@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link ,useNavigate } from "react-router-dom"
-
-const Register = (props) => {
+import { Link, useNavigate } from "react-router-dom"
+import Classnames from 'classnames'
+const Register = (props, errors) => {
 
     { console.log(props) }
 
@@ -9,6 +9,7 @@ const Register = (props) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirm, setConfirm] = useState("")
+
     const navigate = useNavigate();
 
     return (
@@ -26,10 +27,10 @@ const Register = (props) => {
                             <label className="form-label">Name</label>
                             <div className="input-group">
                                 <span className="input-group-text" id="basic-addon1"><i className="fa-solid fa-user"></i></span>
-                                <input type="text" className="form-control" value={name}
-                                    onChange={(e) => { setName(e.target.value) }} />
-                            </div>
-                        </div>
+                                <input type="text"  className={Classnames("form-control", {"is-invalid": errors})} value={name}
+                                    onChange={(e) => { setName(e.target.value) }}  />
+                                {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
+                            </div></div>
                         <div className=" mb-3">
                             <label className="form-label">Email address</label>
                             <div className="input-group">
@@ -54,6 +55,7 @@ const Register = (props) => {
                             </div>
 
                         </div>
+
                         <div className="d-flex justify-content-between">
                             <button type="submit" className="btn btn-outline-primary" onClick={() => {
                                 props.add({
@@ -61,7 +63,7 @@ const Register = (props) => {
                                     email: email,
                                     password: password,
                                     confirm: confirm
-                                },navigate('/login'))
+                                }, navigate('/login'))
                             }}>Save <i className="fa-solid fa-floppy-disk"></i></button>
                             <Link to="/login">I have account</Link>
 

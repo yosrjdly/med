@@ -19,7 +19,7 @@ import AdminRouter from './components/AdminRouter.jsx';
 import ForceRedirect from './components/ForceRedirect.jsx';
 
 import axios from 'axios'
-
+const jwt_decode = require('jwt-decode');
 
 
 function App() {
@@ -33,11 +33,19 @@ function App() {
   }
 
   const postLogin = (body) => {
-    axios.post('http://127.0.0.1:5000/api/login', body).then((response) => {
-      console.log(response.data)
-    }).catch((error) => {
-      console.log(error)
-    })
+    axios.post('http://127.0.0.1:5000/api/login', body)
+      .then((response) => {
+        console.log(response.data);
+        const { token } = response.data;
+        localStorage.setItem('jwt', token);
+        
+        // Decode JWT to access payload
+        const decodedToken = jwt_decode(token);
+        console.log(decodedToken); // Print decoded token payload
+        
+      }).catch((error) => {
+        console.log(error);
+      });
   }
 
   useEffect(() => {
