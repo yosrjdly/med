@@ -29,7 +29,7 @@ const Admin = () => {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th>youssef</th>
+                                            <th>test</th>
                                             <td>test@live.fr</td>
                                             <td>ADMIN</td>
                                             <td>56666666</td>

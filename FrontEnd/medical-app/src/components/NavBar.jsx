@@ -1,7 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
+    { console.log(user) }
+    const navigate = useNavigate();
+
+    const logout=()=>{
+        user.isConnected=false
+        navigate('/login')
+    }
 
     return (
         <div>
@@ -13,16 +20,34 @@ const NavBar = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="/">Profile</Link>
-                            </li>
+                            {user.role === "ADMIN" ? (
+                                <li className="nav-item">
+                                    <Link className="nav-link active" aria-current="page" to="/admin">
+                                        Admin
+                                    </Link>
+                                </li>
+                            ) : (
+                                ""
+                            )}
                         </ul>
                         <div className="d-flex">
                             <div className="mx-4">
-                                <Link className="btn btn-outline-primary" to="/login">Login</Link>
-                                <Link className="btn btn-outline-primary" to="/register">Register</Link>
-                                <span className="text-black-50">Admin</span>
-                                <Link className="btn btn-outline-primary" to="/login">Logout</Link>
+                                {
+                                    !user.isConnected ? (
+                                        <>
+                                            <Link className="btn btn-outline-primary" to="/login">
+                                                Login
+                                            </Link>
+                                            <Link className="btn btn-outline-primary" to="/register">
+                                                Register
+                                            </Link>
+                                        </>
+                                    ) : (
+                                        <Link className="btn btn-outline-primary" to="/login" onClick={()=>{logout()}} >
+                                            Logout
+                                        </Link>
+                                    )
+                                }
 
                             </div>
                         </div>

@@ -1,8 +1,8 @@
 import React, { useState } from "react"
-import { Link,useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
-const Login = (props) => {
-    { console.log(props) }
+const Login = ({ add, errors }) => {
+    { console.log(errors) }
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -21,7 +21,12 @@ const Login = (props) => {
                             <label className="form-label">Email address</label>
                             <div className="input-group">
                                 <span className="input-group-text" id="basic-addon1"><i className="fa-solid fa-at"></i></span>
-                                <input type="text" className="form-control" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                                <input type="text" className="form-control is-invalid" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                                {
+                                    errors && (<div className="invalid-feedback">
+                                        {errors.email}
+                                    </div>)
+                                }
                             </div>
 
                         </div>
@@ -29,18 +34,23 @@ const Login = (props) => {
                             <label className="form-label">Password</label>
                             <div className="input-group">
                                 <span className="input-group-text" id="basic-addon1"><i className="fa-solid fa-key"></i></span>
-                                <input type="password" className="form-control" value={password}
+                                <input type="password" className="form-control is-invalid" value={password}
                                     onChange={(e) => { setPassword(e.target.value) }} />
+                                {
+                                    errors && (<div className="invalid-feedback">
+                                        {errors.password}
+                                    </div>)
+                                }
                             </div>
 
                         </div>
 
                         <div className="d-flex justify-content-between">
                             <button type="submit" className="btn btn-outline-primary" onClick={() => {
-                                props.add({
+                                add({
                                     email: email,
                                     password: password
-                                },navigate('/'))
+                                }, navigate)
                             }}>Save <i className="fa-solid fa-floppy-disk"></i></button>
                             <Link to="/register">I don't have account</Link>
 
