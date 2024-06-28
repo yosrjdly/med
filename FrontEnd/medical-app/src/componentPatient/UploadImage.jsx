@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const UploadImage = () => {
+const UploadImage = (props) => {
     const [name, setName] = useState("")
     const [image, setImage] = useState(null);
     const [imageUrl, setImageUrl] = useState(null);
@@ -34,6 +34,12 @@ const UploadImage = () => {
             console.log(error);
             setLoading(false);
         }
+    }
+    const handleCreate = () => {
+        props.addPatient({
+            image: imageUrl,  // Use the uploaded image URL
+            name: name
+        });
     }
   return (
     <div>
