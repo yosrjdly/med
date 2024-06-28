@@ -8,7 +8,7 @@ const AddProfile = async (req, res) => {
         ProfileModel.findOne({ user: req.body._id })
             .then(async (profile) => {
                 if (!profile) {
-                    //req.body.user = req.user.id
+                  
                     await ProfileModel.create(req.body)
                     res.status(200).json({ message: "success" })
                 } else {

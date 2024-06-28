@@ -60,10 +60,11 @@ function App() {
       });
   }
 
-  const postProfile = (body) => {
+  const postProfile = (body,navigate) => {
     axios.post('http://127.0.0.1:5000/api/add', body).then((response) => {
       console.log(response.data)
-      setProfiles(response.data)
+      setRefetch(!refetsch)
+      navigate('/admin')
     }).catch((error) => {
       console.log(error.response.data)
     })
