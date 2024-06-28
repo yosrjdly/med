@@ -43,9 +43,33 @@ const UploadImage = (props) => {
     }
   return (
     <div>
-      
-    </div>
-  )
+            <form onSubmit={handle}>
+                <div>
+                    <input
+                        type="file"
+                        name="image"
+                        id="image"
+                        accept="image/*"
+                        onChange={(e) => setImage(e.target.files[0])} // set the image file
+                    />
+                </div>
+                <div>
+                    <input
+                        type="text"
+                        value={name}
+                        placeholder='name'
+                        onChange={e => setName(e.target.value)}
+                    />
+                </div>
+                <button type="submit" disabled={loading} >
+                    {loading ? 'Uploading...' : 'Upload'}
+                </button>
+            </form>
+            <button onClick={handleCreate} disabled={loading || !imageUrl}>
+                {loading ? 'Creating...' : 'Create'}
+            </button>
+        </div>
+    ); 
 }
 
 export default UploadImage
