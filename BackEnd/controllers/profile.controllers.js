@@ -49,8 +49,8 @@ const FindSingleProfile = async (req, res) => {
 
 const DeleteProfile = async (req, res) => {
     try {
-        const data = await ProfileModel.findOneAndRemove({ _id: req.params.id })
-        res.status(200).json({ message: "deleted" })
+      const data=  await ProfileModel.findOneAndDelete({ _id: req.params.id })
+        res.status(200).json(data)
 
     } catch (error) {
         res.status(404).json(error.message)
