@@ -47,18 +47,18 @@ const Profile = (props) => {
                                 </div>
                             </div>
                             <div className=" mb-3">
-                                <label className="form-label">Bio</label>
+                                <label className="form-label">Address</label>
                                 <div className="input-group">
-                                    <input type="text" className="form-control" value={bio}
-                                        onChange={(e) => { setBio(e.target.value) }}
+                                    <input type="text" className="form-control" value={address}
+                                        onChange={(e) => { setAdress(e.target.value) }}
                                     />
                                 </div>
                             </div>
                             <div className=" mb-3">
-                                <label className="form-label">Address</label>
+                                <label className="form-label">Bio</label>
                                 <div className="input-group">
-                                    <textarea type="text" className="form-control" value={address}
-                                        onChange={(e) => { setAdress(e.target.value) }}
+                                    <textarea type="text" className="form-control" value={bio}
+                                        onChange={(e) => { setBio(e.target.value) }}
                                     ></textarea>
                                 </div>
                             </div>

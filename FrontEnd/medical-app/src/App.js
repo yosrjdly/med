@@ -111,7 +111,7 @@ function App() {
         <div className="bg-light" style={{ height: "150vh" }}>
           <NavBar user={user} />
           <Routes>
-            <Route path="/profile" element={<PrivateRouter user={user}><Profile addProfile={postProfile} oneProfile={oneProfile} /></PrivateRouter>}></Route>
+            <Route path="/profile/:id" element={<PrivateRouter user={user}><Profile addProfile={postProfile} oneProfile={oneProfile} /></PrivateRouter>}></Route>
             <Route path="/login" element={<Login add={postLogin} errors={errors} />}></Route>
             <Route path="/register" element={<Register add={postRegister} errors={errors} />}></Route>
             <Route path="/admin" element={<PrivateRouter user={user}> <Admin profile={profile} delete={deleteProfile} change={onChange} /></PrivateRouter>}></Route>
