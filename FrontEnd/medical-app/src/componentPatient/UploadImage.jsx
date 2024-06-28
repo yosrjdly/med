@@ -21,6 +21,20 @@ const UploadImage = () => {
             console.log(error);
         }
     }
+    const handle = async (e) => {
+        e.preventDefault();
+        try {
+            setLoading(true);
+            const imgUrl = await uploadFile();
+            setImageUrl(imgUrl);  // Store the uploaded image URL in state
+            setImage(null); // Clear the image input
+            console.log("Upload successful");
+            setLoading(false);
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
+    }
   return (
     <div>
       
