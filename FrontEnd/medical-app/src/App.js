@@ -23,6 +23,7 @@ const jwt_decode = require('jwt-decode');
 
 
 function App() {
+  
   const [user, setUSer] = useState({
     isConnected: false,
     role: "USER"
@@ -51,10 +52,10 @@ function App() {
         /*const decode = jwt_decode(token)
         console.log(decode)*/
         setUSer({
-          isConnected:true
+          isConnected:true,
+          role: "ADMIN"
         })
         navigate('/')
-
 
       }).catch((error) => {
         console.log(error.response.data);
