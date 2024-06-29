@@ -44,47 +44,49 @@ const UploadImage = (props) => {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
         <form onSubmit={handle} className="bg-white p-6 rounded shadow-md w-full max-w-md">
-            <div className="mb-4">
-                <input
-                    type="file"
-                    name="image"
-                    id="image"
-                    accept="image/*"
-                    onChange={(e) => setImage(e.target.files[0])} // set the image file
-                    className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
-                />
-            </div>
-            <div className="mb-4">
-                <input
-                    type="text"
-                    value={name}
-                    placeholder='Name'
-                    onChange={e => setName(e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded"
-                />
+            <div className="flex mb-4">
+                <div className="flex-1">
+                    <input
+                        type="file"
+                        name="image"
+                        id="image"
+                        accept="image/*"
+                        onChange={(e) => setImage(e.target.files[0])} // set the image file
+                        className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
+                    />
+                   
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className={`w-full py-2 px-4 text-white rounded mt-2 ${loading ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'}`}
+                    >
+                        {loading ? 'Uploading...' : 'Upload'}
+                    </button>
+                    <input
+                        type="text"
+                        value={name}
+                        placeholder='Name'
+                        onChange={e => setName(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded mt-2"
+                    />
+                </div>
+                {imageUrl && (
+                    <div className="ml-4">
+                        <img src={imageUrl}  className="w-20 h-20 object-cover rounded-full border border-gray-300" />
+                    </div>
+                )}
             </div>
             <button
-                type="submit"
-                disabled={loading}
-                className={`w-full py-2 px-4 text-white rounded ${loading ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'}`}
-            >
-                {loading ? 'Uploading...' : 'Upload'}
-            </button>
-        </form>
-        <button
             onClick={handleCreate}
             disabled={loading || !imageUrl}
             className={`w-full py-2 px-4 mt-4 text-white rounded ${loading || !imageUrl ? 'bg-gray-500' : 'bg-green-500 hover:bg-green-600'}`}
         >
             {loading ? 'Creating...' : 'Create'}
-        </button>
-        {imageUrl && (
-                <div className="mt-4">
-                    <h2 className="text-xl font-semibold">{name}</h2>
-                    <img src={imageUrl} alt={name} className="mt-4 w-64 h-64 object-cover rounded" />
-                </div>
-            )}
+        </button> 
+        
+        </form>
     </div>
+        
 );
 }
 
