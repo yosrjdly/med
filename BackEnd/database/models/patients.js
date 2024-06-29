@@ -4,7 +4,22 @@ const Schema = mongoose.Schema;
 const PatientModel = new Schema(
     
     {
-        name: "string",
+        firstName: {
+            type: String,
+            required: true
+        },
+        lastName: {
+            type: String,
+            required: true
+        },
+        age: {
+            type: Date,
+            required: true
+        },
+        phone : {
+            type: String,
+            required: true
+        },
         email: {
             type: "string",
             unique: true,
