@@ -1,61 +1,42 @@
+// 
+
 import React from "react";
-import { Link ,useNavigate} from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 const NavBar = ({ user }) => {
-    { console.log(user) }
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const logout=()=>{
-        user.isConnected=false
-        navigate('/login')
-    }
+  const logout = () => {
+    user.isConnected = false;
+    navigate('/login');
+  };
 
-    return (
-        <div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <div className="container-fluid">
-                    <Link className="navbar-brand" to="/">Medical App</Link>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            {user.role === "ADMIN" ? (
-                                <li className="nav-item">
-                                    <Link className="nav-link active" aria-current="page" to="/admin">
-                                        Admin
-                                    </Link>
-                                </li>
-                            ) : (
-                                ""
-                            )}
-                        </ul>
-                        <div className="d-flex">
-                            <div className="mx-4">
-                                {
-                                    !user.isConnected ? (
-                                        <>
-                                            <Link className="btn btn-outline-primary" to="/login">
-                                                Login
-                                            </Link>
-                                            <Link className="btn btn-outline-primary" to="/register">
-                                                Register
-                                            </Link>
-                                        </>
-                                    ) : (
-                                        <Link className="btn btn-outline-primary" to="/login" onClick={()=>{logout()}} >
-                                            Logout
-                                        </Link>
-                                    )
-                                }
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+  return (
+    <nav className="bg-blue-600 shadow-md p-4">
+      <div className="container mx-auto flex justify-between items-center">
+        <Link className="flex items-center text-2xl font-bold text-white" to="/">
+        MedConnect
+        </Link>
+        <nav className="space-x-4">
+            <a href="#features" className="text-lg text-white">Features</a>
+            <a href="#benefits" className="text-lg text-white">Benefits</a>
+          </nav>
+        <div className="flex items-center space-x-4">
+          {user.role === "ADMIN" && (
+            <Link className="text-lg text-white" to="/admin">Admin</Link>
+          )}
+          {!user.isConnected ? (
+            <>
+              <Link className="text-lg text-white hover:text-blue-800" to="/login">Login</Link>
+              <Link className="text-lg text-white hover:text-blue-800" to="/register">Register</Link>
+            </>
+          ) : (
+            <button className="text-lg text-white" onClick={logout}>Logout</button>
+          )}
         </div>
-    )
-}
+      </div>
+    </nav>
+  );
+};
 
-export default NavBar
+export default NavBar;
+

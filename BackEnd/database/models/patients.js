@@ -4,35 +4,20 @@ const Schema = mongoose.Schema;
 const PatientModel = new Schema(
     
     {
-        firstName: {
-            type: String,
-            required: true
-        },
-        lastName: {
-            type: String,
-            required: true
-        },
-        age: {
-            type: Date,
-            required: true
-        },
-        phone : {
-            type: String,
-            required: true
-        },
-        email: {
-            type: "string",
-            unique: true,
-        },
-        adresse: "String",
-        telephone: "String",
-        city:"String",
-        image:"String"
-
+        firstName: { type: String, required: true },
+        lastName: { type: String, required: true },
+        dateOfBirth: { type: Date, required: true },
+        contactNumber: { type: String, required: true },
+        email: { type: String, required: true },
+        address: { type: String, required: true },
+        image: { type: String },
+        heartRate: { type: Number, required: true },
+        allergies: { type: [String] },
+        weight: { type: Number, required: true },
+        height: { type: Number, required: true }
     }
 
 );
 
-
-
-module.exports = mongoose.model("patients", PatientModel);
+const  patients = mongoose.model("patients", PatientModel);
+module.exports = patients

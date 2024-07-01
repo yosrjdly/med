@@ -14,10 +14,18 @@ import Admin from './pages/Admin.jsx';
 import NavBar from './components/NavBar.jsx';
 import PrivateRouter from './components/PrivateRouter.jsx';
 import axios from 'axios'
-const jwt_decode = require('jwt-decode');
+import Dashboard from "./pages/Dashboard.jsx";
+import PatientProfile from "./pages/PatientProfile.jsx";
+import AddPatient from "./pages/AddPatient.jsx";
+import Home from '../src/pages/Home.jsx'
+import EditPatient from './pages/EditPatient.jsx';
+import NewAppointmentForm from './pages/NewAppointmentForm.jsx';
+
+//const jwt_decode = require('jwt-decode');
 
 
 function App() {
+
 
   const [user, setUSer] = useState({
     isConnected: false,
@@ -52,7 +60,7 @@ function App() {
           isConnected: true,
           role: "ADMIN"
         })
-        navigate('/')
+        navigate('/dashboard')
 
       }).catch((error) => {
         console.log(error.response.data);
@@ -98,23 +106,46 @@ function App() {
   }
 
   useEffect(() => {
-    getProfile()
+getProfile()
+
   }, [refetsch])
 
   const onChange = (profile) => {
     setOneProfiles(profile)
   }
+  const addPatient = (body) => {
+    axios
+      .post("http://localhost:5000/api/patient/CreatePatient", body)
+      .then((results) => {
+        console.log("data added ");
+        // setref(!ref)
+      })
+      .catch((error) => console.error(error));
+  };
+  //***********************************/
+
 
   return (
     <div className="App">
       <BrowserRouter>
         <div className="bg-light" style={{ height: "150vh" }}>
-          <NavBar user={user} />
+          <NavBar user={user} /> 
           <Routes>
-            <Route path="/profile/:id" element={<PrivateRouter user={user}><Profile addProfile={postProfile} oneProfile={oneProfile} /></PrivateRouter>}></Route>
+            <Route path="/" element={<Home />} />
+            <Route path="/edit" element={<EditPatient />} />
+            <Route path="/add-appointment" element={<NewAppointmentForm />} />
+
+            <Route path="/profile" element={<PrivateRouter user={user}><Profile addProfile={postProfile} oneProfile={oneProfile} /></PrivateRouter>}></Route>
             <Route path="/login" element={<Login add={postLogin} errors={errors} />}></Route>
             <Route path="/register" element={<Register add={postRegister} errors={errors} />}></Route>
-            <Route path="/admin" element={<PrivateRouter user={user}> <Admin profile={profile} delete={deleteProfile} change={onChange} /></PrivateRouter>}></Route>
+            <Route path="/admin" element={<PrivateRouter user={user}> <Admin  profile={profile} delete={deleteProfile} change={onChange} /></PrivateRouter>}></Route>
+            <Route exact path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="/patients/:id" element={<PatientProfile />}></Route>
+
+          <Route
+            path="/add-patient"
+            element={<AddPatient addPatient={addPatient} />}
+          ></Route>
           </Routes>
         </div>
       </BrowserRouter>

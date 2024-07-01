@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Admin = (props) => {
 
-    { console.log(props) }
+    console.log(props) 
     return (
 
 
@@ -32,6 +32,7 @@ const Admin = (props) => {
                                {props.profile.map((ele)=>
                                   <tr>
                                   <th>{ele.user.name}</th>
+                                  {console.log(ele.user.name)}
                                   <td>{ele.user.email}</td>
                                   <td>{ele.user.role}</td>
                                   <td>{ele.tel}</td>

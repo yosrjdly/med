@@ -21,7 +21,8 @@ const Login = ({ add, errors }) => {
                             <label className="form-label">Email address</label>
                             <div className="input-group">
                                 <span className="input-group-text" id="basic-addon1"><i className="fa-solid fa-at"></i></span>
-                                <input type="text" className="form-control is-invalid" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                                <input type="text" className={`form-control ${errors && errors.email && 'is-invalid'}`} value={email} onChange={(e) => { setEmail(e.target.value) }} />
+
                                 {
                                     errors && (<div className="invalid-feedback">
                                         {errors.email}
@@ -34,7 +35,7 @@ const Login = ({ add, errors }) => {
                             <label className="form-label">Password</label>
                             <div className="input-group">
                                 <span className="input-group-text" id="basic-addon1"><i className="fa-solid fa-key"></i></span>
-                                <input type="password" className="form-control is-invalid" value={password}
+                                <input type="password" className={`form-control ${errors && errors.password && 'is-invalid'}`} value={password}
                                     onChange={(e) => { setPassword(e.target.value) }} />
                                 {
                                     errors && (<div className="invalid-feedback">

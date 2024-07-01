@@ -9,7 +9,7 @@ const Profile = (props) => {
     const [address, setAdress] = useState(props.oneProfile.address)
     const [bio, setBio] = useState(props.oneProfile.bio)
 
-    { console.log(props) }
+     console.log(props) 
 
     return (
 
