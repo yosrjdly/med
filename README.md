@@ -45,3 +45,50 @@ MedConnect is a comprehensive medical management application designed for doctor
 - **Manage Appointments:**
   - View past appointment history for each patient.
   - Filter appointments by date.
+
+## Technologies Used
+
+- **Frontend:**
+  - React
+  - Tailwind CSS
+  - React Router
+
+- **Backend:**
+  - Node.js
+  - Express.js
+
+- **Database:**
+  - MongoDB
+
+- **Authentication:**
+  - JWT (JSON Web Tokens)
+  - bcrypt for password hashing
+
+- **Image Uploads:**
+  - Cloudinary
+
+## Authentication
+
+Authentication in MedConnect is handled using JWT (JSON Web Tokens) to ensure secure and stateless user sessions. Passwords are securely hashed using bcrypt before being stored in the database. 
+
+### Register/Login:
+- **Register:** Doctors can register by providing their medical credentials, including a unique email and password.
+- **Login:** Doctors can log in using their email and password. On successful authentication, a JWT token is issued.
+- **Password Reset:** Doctors can reset their password if they forget it, ensuring continuous access to their accounts.
+
+## Image Uploads with Cloudinary
+
+MedConnect integrates with Cloudinary for efficient image management. This includes uploading, storing, and retrieving patient images and medical documents.
+
+### Steps:
+1. **Upload Images:** Doctors can upload patient images and medical documents during patient registration or profile updates.
+2. **Store Securely:** Uploaded images are securely stored in Cloudinary and linked to the respective patient records.
+3. **Retrieve Images:** Images can be retrieved and displayed on the patient's profile page, providing easy access to visual medical records.
+
+## How to Contribute
+
+We welcome contributions! Please read the [contributing guidelines](CONTRIBUTING.md) for more information.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
