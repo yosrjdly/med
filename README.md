@@ -51,6 +51,7 @@ MedConnect is a comprehensive medical management application designed for doctor
 - **Frontend:**
   - React
   - Tailwind CSS
+  - bootstrap css 
   - React Router
 
 - **Backend:**
